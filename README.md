@@ -1,2 +1,178 @@
-# All_in_one
-Framework All_in_one is a modular AI utility toolkit that provides voice interaction, text-based language model communication, image generation/summarization, and file operations. It combines text-to-speech, speech recognition, LLM chat, image LLM tasks, and file handling into a single Python package.
+!pip install All_in_one
+
+# ===================== VoxVision Project Syntax Reference =====================
+
+# ---------------------------- Sound Class ----------------------------
+
+class Sound:
+@staticmethod
+def listen():
+"""Listens to your voice and converts it to text."""
+pass
+
+```
+@staticmethod
+def speak(text):
+    """Speaks the given text aloud."""
+    pass
+
+@staticmethod
+def read(filename):
+    """Reads aloud the contents of the specified text file."""
+    pass
+```
+
+# Usage Examples:
+
+# Sound.listen()
+
+# Sound.speak("Hello there")
+
+# Sound.read("file.txt")
+
+# ---------------------------- LLM Class ----------------------------
+
+class llm:
+@staticmethod
+def set(system\_prompt):
+"""Sets the system prompt and resets history."""
+pass
+
+```
+@staticmethod
+def model(user_input):
+    """Sends user input to LLM and returns response."""
+    pass
+
+@staticmethod
+def save(filename):
+    """Saves current conversation to a file."""
+    pass
+
+@staticmethod
+def load(filename):
+    """Loads conversation history from a file."""
+    pass
+
+@staticmethod
+def reset():
+    """Clears chat history and resets to system prompt."""
+    pass
+
+@staticmethod
+def summarize_and_reset():
+    """Summarizes conversation and resets chat."""
+    pass
+```
+
+# Usage Examples:
+
+# llm.set("You are a coding assistant.")
+
+# llm.model("Write a poem about robots.")
+
+# llm.save("history.json")
+
+# llm.load("history.json")
+
+# llm.reset()
+
+# llm.summarize\_and\_reset()
+
+# ---------------------------- FileOps Class ----------------------------
+
+class FileOps:
+@staticmethod
+def write(filename, content):
+"""Writes a string to a file (overwrite)."""
+pass
+
+```
+@staticmethod
+def append(filename, content):
+    """Appends a string to a file."""
+    pass
+
+@staticmethod
+def read(filename):
+    """Reads and returns the content of a file."""
+    pass
+
+@staticmethod
+def json_load(filename):
+    """Loads JSON content from a file."""
+    pass
+
+@staticmethod
+def json_dump(filename, data):
+    """Saves JSON data to a file."""
+    pass
+```
+
+# Usage Examples:
+
+# FileOps.write('log.txt', 'Hello World!\n')
+
+# FileOps.append('log.txt', 'Appended line.\n')
+
+# FileOps.read('log.txt')
+
+# FileOps.json\_load('data.json')
+
+# FileOps.json\_dump('data.json', {"a": 1, "b": 2})
+
+# ---------------------------- ImageLLM Class ----------------------------
+
+class imagellm:
+@staticmethod
+def set(instruction, url, model\_name):
+"""Initializes the image model."""
+pass
+
+```
+@staticmethod
+def model(prompt):
+    """Generates an image based on prompt and returns image bytes or error."""
+    pass
+
+@staticmethod
+def save(img_bytes, filename):
+    """Saves image bytes to a file."""
+    pass
+
+@staticmethod
+def summarize(image_path):
+    """Describes (captions) the given image."""
+    pass
+```
+
+# Usage Examples:
+
+# imagellm.set("You generate and caption images.", url="[http://localhost:1234](http://localhost:1234)", model\_name="image-llava-v1")
+
+# img = imagellm.model("a dog riding a skateboard")
+
+# if isinstance(img, bytes):
+
+# imagellm.save(img, "dog\_skateboard.png")
+
+# else:
+
+# print(img)
+
+# imagellm.summarize("dog\_skateboard.png")
+
+# ---------------------------- Assistant Loop (Optional) ----------------------------
+
+def assistant\_loop():
+while True:
+query = Sound.listen()
+if query:
+response = llm.model(query)
+Sound.speak(response)
+
+# To run this in real-time:
+
+# import threading
+
+# threading.Thread(target=assistant\_loop).start()
